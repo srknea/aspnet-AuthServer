@@ -3,7 +3,7 @@ using SharedLibrary.Dtos;
 
 namespace AuthServer.Core.Services
 {
-    public interface IAuthenticationService
+    public interface ICustomAuthenticationService
     {
         Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto);
 
@@ -11,6 +11,6 @@ namespace AuthServer.Core.Services
 
         Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken);
 
-        Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto);
+        Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto);
     }
 }

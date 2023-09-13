@@ -10,7 +10,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-
 namespace AuthServer.Service.Services
 {
     internal class TokenService : ITokenService

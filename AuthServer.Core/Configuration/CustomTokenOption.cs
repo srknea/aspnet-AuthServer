@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SharedLibrary.Configurations
+namespace AuthServer.Core.Configuration
 {
     public class CustomTokenOption
     {

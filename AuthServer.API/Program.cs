@@ -5,8 +5,6 @@ using AuthServer.Core.UnitOfWork;
 using AuthServer.Data.Repositories;
 using AuthServer.Data;
 using AuthServer.Service.Services;
-using Microsoft.AspNetCore.Authentication;
-using SharedLibrary.Configurations;
 using UdemyAuthServer.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;

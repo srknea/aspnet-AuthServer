@@ -1,4 +1,4 @@
-namespace SecondMiniApp.API
+namespace FourthMiniApp.API
 {
     public class WeatherForecast
     {

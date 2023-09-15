@@ -13,6 +13,7 @@ using System.Reflection;
 using AuthServer.Core.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using SharedLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,13 +1,12 @@
 ﻿using AuthServer.Core.DTOs;
 using AuthServer.Core.Model;
 using AuthServer.Core.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace UdemyAuthServer.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : CustomBaseController

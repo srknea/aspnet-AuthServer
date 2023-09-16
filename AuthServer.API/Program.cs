@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SharedLibrary.Services;
 using FluentValidation.AspNetCore;
 using AuthServer.Service.Validations;
+using SharedLibrary.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddControllers()
         x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>();
     });
 
+builder.Services.UseCustomValidationResponse();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

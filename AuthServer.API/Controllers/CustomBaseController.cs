@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UdemyAuthServer.API.Controllers
+namespace AuthServer.API.Controllers
 {
     public class CustomBaseController : ControllerBase
     {

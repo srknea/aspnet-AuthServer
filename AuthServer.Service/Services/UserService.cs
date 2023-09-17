@@ -4,7 +4,7 @@ using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Identity;
 using SharedLibrary.Dtos;
 
-namespace UdemyAuthServer.Service.Services
+namespace AuthServer.Service.Services
 {
     public class UserService : IUserService
     {

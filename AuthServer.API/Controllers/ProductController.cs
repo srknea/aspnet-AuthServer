@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace UdemyAuthServer.API.Controllers
+namespace AuthServer.API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

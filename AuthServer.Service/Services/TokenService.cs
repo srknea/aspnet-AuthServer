@@ -37,8 +37,11 @@ namespace AuthServer.Service.Services
         }
 
         // Üyelik sistemi gerektiren bir token oluşturmak istediğimizde PAYLOAD'ı dolduracak
-        private IEnumerable<Claim> GetClaims(UserApp userApp, List<string> audiences)
+        private async Task<IEnumerable<Claim>> GetClaims(UserApp userApp, List<string> audiences)
         {
+            var userRoles = await _userManager.GetRolesAsync(userApp); // Kullanıcı rollerini çekiyoruz. Örn: admin, manager
+            // List<string> <-------> ["admin","manager"]
+
             var userList = new List<Claim> {
             new Claim(ClaimTypes.NameIdentifier,userApp.Id),
             new Claim(JwtRegisteredClaimNames.Email, userApp.Email),
@@ -47,6 +50,8 @@ namespace AuthServer.Service.Services
             };
 
             userList.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
+
+            userList.AddRange(userRoles.Select(x => new Claim(ClaimTypes.Role, x))); // Kullanıcı rollerini ClaimTypes.Role ile Payload'a ekliyoruz
 
             return userList;
         }
@@ -64,7 +69,7 @@ namespace AuthServer.Service.Services
         }
 
         // Token oluşturmak için kullanacağımız metot
-        public TokenDto CreateToken(UserApp userApp)
+        public async Task<TokenDto> CreateTokenAsync(UserApp userApp)
         {
             var accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOption.AccessTokenExpiration); // Token'ın ömrü
             var refreshTokenExpiration = DateTime.Now.AddMinutes(_tokenOption.RefreshTokenExpiration);
@@ -76,7 +81,7 @@ namespace AuthServer.Service.Services
                 issuer: _tokenOption.Issuer,
                 expires: accessTokenExpiration,
                  notBefore: DateTime.Now,
-                 claims: GetClaims(userApp, _tokenOption.Audience),
+                 claims: await GetClaims(userApp, _tokenOption.Audience),
                  signingCredentials: signingCredentials);
 
             var handler = new JwtSecurityTokenHandler(); // Token'ı oluşturacak olan nesne

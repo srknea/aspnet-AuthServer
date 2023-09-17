@@ -7,7 +7,6 @@ using AuthServer.Data;
 using AuthServer.Service.Services;
 using Microsoft.AspNetCore.Authentication;
 using SharedLibrary.Configurations;
-using UdemyAuthServer.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using AuthServer.Core.Model;
@@ -38,6 +37,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICustomAuthenticationService, CustomAuthenticationService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IServiceGeneric<,>), typeof(ServiceGeneric<,>));
@@ -52,7 +52,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
-builder.Services.AddIdentity<UserApp, IdentityRole>(Opt =>
+builder.Services.AddIdentity<UserApp, UserRole>(Opt =>
 {
     Opt.User.RequireUniqueEmail = true; // Email adresi unique olmalý
     Opt.Password.RequireNonAlphanumeric = false; // *? gibi karakterlerin kullanýmýný zorunlu tutma... (Normalde default olarak zorunludur)

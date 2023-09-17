@@ -2,7 +2,6 @@
 using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using UdemyAuthServer.API.Controllers;
 
 namespace AuthServer.API.Controllers
 {

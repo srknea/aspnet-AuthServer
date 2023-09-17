@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SharedLibrary.Dtos;
 
-namespace UdemyAuthServer.Service.Services
+namespace AuthServer.Service.Services
 {
     public class CustomAuthenticationService : ICustomAuthenticationService
     {
@@ -40,7 +40,7 @@ namespace UdemyAuthServer.Service.Services
             {
                 return Response<TokenDto>.Fail("Email or Password is wrong", 400, true);
             }
-            var token = _tokenService.CreateToken(user); // Token oluşturuldu
+            var token = await _tokenService.CreateTokenAsync(user); // Token oluşturuldu
 
             var userRefreshToken = await _userRefreshTokenService.Where(x => x.UserId == user.Id).SingleOrDefaultAsync(); // Kullanıcının refresh token'ı var mı? 
 
@@ -92,7 +92,7 @@ namespace UdemyAuthServer.Service.Services
                 return Response<TokenDto>.Fail("User Id not found", 404, true);
             }
 
-            var tokenDto = _tokenService.CreateToken(user); // Token oluşturuldu
+            var tokenDto = await _tokenService.CreateTokenAsync(user); // Token oluşturuldu
 
             existRefreshToken.Code = tokenDto.RefreshToken;
             existRefreshToken.Expiration = tokenDto.RefreshTokenExpiration;

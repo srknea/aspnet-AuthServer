@@ -4,7 +4,6 @@ using AuthServer.Core.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Dtos;
 using System.Linq.Expressions;
-using UdemyAuthServer.Service;
 
 namespace AuthServer.Service.Services
 {
